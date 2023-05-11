@@ -9,15 +9,18 @@ export class UserController {
 
   @UseGuards(AuthGuard('jwt'))
   @Get('me/activities')
-  findAllUserActivities(@IdFromJwt() id: number, @Query() query) {
-    console.log(id, query);
-    return {};
+  async findAllUserActivities(@IdFromJwt() id: number, @Query() query) {
+    return await this.userService.findUserAndActivity(
+      id,
+      query['startsAt'],
+      query['expiresAt'],
+    );
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Get('me')
   findOne(@IdFromJwt() id: number) {
-    return this.userService.findOne(id);
+    return this.userService.findUser(id);
   }
 
   @UseGuards(AuthGuard('jwt'))
