@@ -11,10 +11,15 @@ CREATE TABLE Activity (
   type_id INTEGER REFERENCES Activity_Type(id),
   description TEXT NOT NULL,
   emission FLOAT NOT NULL,
-  user_id INTEGER REFERENCES Users(id)
+  user_id INTEGER REFERENCES Users(id),
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
 );
+
 
 CREATE TABLE Activity_Type (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
+  name VARCHAR(255) NOT NULL,
+  min_emission INTEGER NOT NULL,
+  max_emission INTEGER NOT NULL
 );

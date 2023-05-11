@@ -20,6 +20,16 @@ export class Type extends Model {
   })
   name: string;
 
+  @Column({
+    allowNull: false,
+  })
+  min_emission: number;
+
+  @Column({
+    allowNull: false,
+  })
+  max_emission: number;
+
   @BelongsTo(() => Activity, 'type_id')
   activity: Activity;
 }

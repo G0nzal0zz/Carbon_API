@@ -9,7 +9,7 @@ import {
 import { User } from './user.model';
 import { Type } from './type.model';
 
-@Table({ tableName: 'Activity', timestamps: false })
+@Table({ tableName: 'Activity', timestamps: true })
 export class Activity extends Model {
   @PrimaryKey
   @Column({
@@ -40,8 +40,14 @@ export class Activity extends Model {
   @Column({})
   type_id: number;
 
+  @Column({ allowNull: false, defaultValue: new Date() })
+  created_at: Date;
+
+  @Column({ allowNull: false, defaultValue: new Date() })
+  updated_at: Date;
+
   @BelongsTo(() => User, 'user_id')
-  owner: User;
+  user: User;
 
   @BelongsTo(() => Type, 'type_id')
   type: Type;
