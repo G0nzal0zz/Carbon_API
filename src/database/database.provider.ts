@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { User } from './models/user.model';
 import { Activity } from './models/activity.model';
 import { Type } from './models/type.model';
+import { sequelizeAliases } from './sequelize/sequelize.aliases';
 
 export const databaseProviders = [
   {
@@ -11,7 +12,12 @@ export const databaseProviders = [
         process.env.POSTGRES_DB,
         process.env.POSTGRES_USER,
         process.env.POSTGRES_PASSWORD,
-        { host: 'localhost', dialect: 'postgres', port: +process.env.DB_PORT },
+        {
+          host: 'localhost',
+          dialect: 'postgres',
+          port: +process.env.DB_PORT,
+          operatorsAliases: sequelizeAliases,
+        },
       );
       sequelize.addModels([User, Activity, Type]);
       try {

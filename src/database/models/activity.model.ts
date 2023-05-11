@@ -30,7 +30,7 @@ export class Activity extends Model {
   @Column({
     allowNull: false,
   })
-  price: number;
+  emission: number;
 
   @ForeignKey(() => User)
   @Column({})
