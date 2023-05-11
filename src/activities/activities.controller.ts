@@ -2,20 +2,21 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ActivitiesService } from './activities.service';
 import { CreateActivityDto } from './dto/create-activity.dto';
 import { UpdateActivityDto } from './dto/update-activity.dto';
+import { IdFromJwt } from 'src/middleware/middleware.id';
 
 @Controller('activities')
 export class ActivitiesController {
   constructor(private readonly activitiesService: ActivitiesService) {}
 
   @Post()
-  create(@Body() createActivityDto: CreateActivityDto) {
-    return this.activitiesService.create(createActivityDto);
+  create(@IdFromJwt() id: number , @Body() createActivityDto: CreateActivityDto) {
+    return this.activitiesService.create(id ,createActivityDto);
   }
 
-  @Get()
-  findAll() {
-    return this.activitiesService.findAll();
-  }
+  // @Get()
+  // findAll() {
+  //   return this.activitiesService.findAll();
+  // }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
