@@ -13,23 +13,23 @@ export class ActivitiesController {
     return this.activitiesService.create(id ,createActivityDto);
   }
 
-  // @Get()
-  // findAll() {
-  //   return this.activitiesService.findAll();
-  // }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.activitiesService.findOne(+id);
+  @Get()
+  async findAll() {
+    return await this.activitiesService.findAll();
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateActivityDto: UpdateActivityDto) {
-    return this.activitiesService.update(+id, updateActivityDto);
+  @Get(':name')
+  async findOne(@Param('name') name: string) {
+    return await this.activitiesService.findOne(name);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.activitiesService.remove(+id);
+  @Patch(':name')
+  async update(@Param('name') name: string, @Body() updateActivityDto: UpdateActivityDto) {
+    return await this.activitiesService.update(name, updateActivityDto);
+  }
+
+  @Delete(':name')
+  async remove(@Param('name') name: string) {
+    return await this.activitiesService.remove(name);
   }
 }
