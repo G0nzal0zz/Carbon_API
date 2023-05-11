@@ -17,7 +17,7 @@ export class AuthController {
     }
     const user = await this.authService.findUserByEmail(registerDto.email);
     if (user) {
-      return new BadRequestException('Incorrect email or password');
+      throw new BadRequestException('Incorrect email or password');
     }
     return await this.authService.createUser(registerDto);
   }
@@ -30,7 +30,7 @@ export class AuthController {
     }
     const user = await this.authService.findUserByEmail(loginDto.email);
     if (!user) {
-      return new BadRequestException('Incorrect email or password');
+      throw new BadRequestException('Incorrect email or password');
     }
     const pwdExists = await argon.verify(user['password'], loginDto.password);
     if (!pwdExists) {

@@ -1,19 +1,17 @@
-import { IsNotEmpty, IsNumber, IsString, isEmpty } from "class-validator";
+import { IsNotEmpty, IsNumber, IsPositive, IsString } from 'class-validator';
 
 export class CreateActivityTypeDto {
-    @IsNumber()
-    @IsNotEmpty()
-    id: number;
+  @IsNotEmpty()
+  @IsString()
+  name: string;
 
-    @IsNotEmpty()
-    @IsString()
-    name: string;
+  @IsNotEmpty()
+  @IsNumber()
+  @IsPositive()
+  min_emission: number;
 
-    @IsNotEmpty()
-    @IsNumber()
-    min_emission: number;
-
-    @IsNotEmpty()
-    @IsNumber()
-    max_emission: number;
+  @IsNotEmpty()
+  @IsNumber()
+  @IsPositive()
+  max_emission: number;
 }

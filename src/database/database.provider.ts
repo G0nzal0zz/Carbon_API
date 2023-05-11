@@ -9,11 +9,11 @@ export const databaseProviders = [
     provide: 'SEQUELIZE',
     useFactory: async (): Promise<Sequelize> => {
       const sequelize = new Sequelize(
-        process.env.POSTGRES_DB,
-        process.env.POSTGRES_USER,
-        process.env.POSTGRES_PASSWORD,
+        process.env.ONLINE_DB,
+        process.env.ONLINE_USER,
+        process.env.ONLINE_PASSWORD,
         {
-          host: 'localhost',
+          host: process.env.ONLINE_HOST,
           dialect: 'postgres',
           port: +process.env.DB_PORT,
           operatorsAliases: sequelizeAliases,

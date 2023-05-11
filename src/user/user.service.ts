@@ -21,7 +21,7 @@ export class UserService {
           where: whereQuery,
         },
       ],
-    });
+    }).then((values) => (values ? values : []));
   }
 
   findAll() {
@@ -29,12 +29,16 @@ export class UserService {
   }
 
   findUser(id: number) {
-    return User.findByPk(id);
+    return User.findByPk(id).then((user) => {
+      delete user.dataValues['password'];
+      delete user.dataValues['id'];
+      return user;
+    });
   }
 
   remove(id: number) {
     return User.destroy({
       where: { id: { $eq: id } },
-    });
+    }).then(() => ({}));
   }
 }
