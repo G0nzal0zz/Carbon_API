@@ -1,8 +1,3 @@
-// CREATE TABLE Activity_Type (
-//     id SERIAL PRIMARY KEY,
-//     name VARCHAR(255) NOT NULL
-//   );
-
 import { IsNotEmpty, IsNumber, IsString, isEmpty } from "class-validator";
 
 export class CreateActivityTypeDto {
@@ -13,4 +8,12 @@ export class CreateActivityTypeDto {
     @IsNotEmpty()
     @IsString()
     name: string;
+
+    @IsNotEmpty()
+    @IsNumber()
+    min_emission: number;
+
+    @IsNotEmpty()
+    @IsNumber()
+    max_emission: number;
 }

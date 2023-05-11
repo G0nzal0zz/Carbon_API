@@ -9,26 +9,26 @@ export class ActivityTypeController {
 
   @Post()
   async create(@Body() createActivityTypeDto: CreateActivityTypeDto) {
-    return await this.activityTypeService.create(createActivityTypeDto);
+    return await await this.activityTypeService.create(createActivityTypeDto);
   }
 
   @Get()
-  findAll() {
-    return this.activityTypeService.findAll();
+  async findAll() {
+    return await this.activityTypeService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.activityTypeService.findOne(+id);
+  @Get(':name')
+  async findOne(@Param('name') name: string) {
+    return await this.activityTypeService.findOne(name);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateActivityTypeDto: UpdateActivityTypeDto) {
-    return this.activityTypeService.update(+id, updateActivityTypeDto);
+  @Patch(':name')
+  async update(@Param('name') name: string, @Body() updateActivityTypeDto: UpdateActivityTypeDto) {
+    return await this.activityTypeService.update(name, updateActivityTypeDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.activityTypeService.remove(+id);
+  @Delete(':name')
+  async remove(@Param('name') name: string) {
+    return await this.activityTypeService.remove(name);
   }
 }
